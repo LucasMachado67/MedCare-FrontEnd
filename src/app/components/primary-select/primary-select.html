@@ -1,0 +1,15 @@
+<!-- primary-select.html -->
+<div class="input-wrapper">
+  @if (label) {
+    <label [for]="inputName">{{ label }}</label>
+  }
+
+  <div class="input-content">
+    <select [id]="inputName" [value]="value" (change)="onSelect($event)">
+      <option value="">Selecione...</option>
+      @for (option of options; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+  </div>
+</div>

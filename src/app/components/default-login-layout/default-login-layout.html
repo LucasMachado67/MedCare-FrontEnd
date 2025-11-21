@@ -1,0 +1,25 @@
+<main>
+    
+    <section class="form-section">
+        <ng-content></ng-content>
+        <div class="btn-wrapper">
+            <button 
+                class="btn-primary" 
+                (click)="submit()"
+                [disabled]="disablePrimaryBtn"
+            >{{primaryBtnText}}</button>
+                
+            <div class="divider">
+                <div></div>
+                <span>or</span>
+                <div></div>
+            </div>
+            <button class="btn-secondary" (click)="navigate()">{{secondaryBtnText}}</button>
+        </div>
+
+    </section>
+    <section class="main-section">
+        <img src="assets/images/login.jpg" alt="login">
+    </section>
+
+</main>

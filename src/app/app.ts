@@ -1,9 +1,14 @@
+import { HttpClientModule } from '@angular/common/http';
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,
+     HttpClientModule,
+      FormsModule,
+        RouterModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

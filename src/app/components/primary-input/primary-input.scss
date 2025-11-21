@@ -1,0 +1,40 @@
+@use "../../../styles/variables.scss" as variables;
+.input-wrapper {
+    color: variables.$text-color;
+    font-size: 16px;
+    text-align: start;
+
+
+    .input-content {
+        width: 100%;
+        border-radius: 8px;
+        display: flex;
+        
+        .icon {
+            padding: 12px;
+            background-color: variables.$primary-color;
+            border-radius: 0 8px 8px 0;
+            height: 40px;
+        }
+
+        input {
+            border: none;
+            border-radius: 8px 0 0 8px;
+            background-color: rgb(223, 223, 223);
+            padding: 12px 0 12px 20px;
+            width: 100%;
+            height: 40px;
+        }
+    }
+
+    .input-wrapper.invalid input {
+        border: 2px solid #e74c3c;
+        }
+
+        .error-message {
+        color: #e74c3c;
+        font-size: 0.8rem;
+        margin-top: 4px;
+        }
+}
+
