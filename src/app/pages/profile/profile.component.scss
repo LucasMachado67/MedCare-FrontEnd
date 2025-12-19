@@ -1,0 +1,63 @@
+@use "../../../styles/variables.scss" as var;
+
+.containers{
+    display: flex;
+    margin-top: 100px;
+    gap: 10px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    .profile-container{
+        margin-top: 10px;
+        width: 30%;
+        .profile-display{
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .profile-image{
+    
+                display: flex;
+                border: 5px solid var.$secondary_color;
+                border-radius: 100%;
+                height: 150px;
+                width: 150px;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+    
+    .informations{
+        display: flex;
+        flex-direction: column;
+        .personal{  
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            border-bottom: 1px solid gray;
+            
+            .personal-info{
+                padding-right: 10px;
+            }
+            .address{
+                border-left: 1px solid gray;
+                padding-left: 10px;
+            }
+        }
+
+        .actions{
+            display: flex;
+            margin-top: 10px;
+            justify-content: space-between;
+            align-items: center;
+
+            button{
+                color: white;
+                background-color: var.$primary-color;
+                border: 3px solid var.$secondary-color;
+                border-radius: 10px;
+            }
+        }   
+    }
+}

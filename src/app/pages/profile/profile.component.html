@@ -1,0 +1,68 @@
+<app-header></app-header>
+
+<div class="containers">
+    @if (userData && role) {
+        <div class="profile-container">
+
+        @if(role == 'MEDIC' || role == 'ASSISTANT'){
+
+                <div class="profile-display">
+                  <div class="profile-image">
+                      <i class="fa-solid fa-user fa-2xl"></i>
+                  </div>
+                  <h2>{{ userData?.name }}</h2>
+                </div>
+            }
+            @else {
+                <h2>{{ userData?.name }}</h2>
+            }
+    
+        @switch (role) {
+          @case ('MEDIC') {
+            <div>
+              <p>CRM: {{ userData?.crm }}</p>
+              <p>Especialidade: {{ userData?.medicalSpecialty }}</p>
+            </div>
+          }
+          @case ('PATIENT') {
+            <div>
+              <h4 id="title">Informações do Paciente</h4>
+              <p>Tipo Sanguíneo: {{ userData?.bloodType }}</p>
+              <p>Plano de Saúde: {{ userData?.healthPlan }}</p>
+            </div>
+          }
+          @default {
+            <p>Role não reconhecida: {{ role }}</p>
+          }
+        }
+    
+      </div>
+
+      <div class="informations">
+
+          <div class="personal">
+              <div class="personal-info">
+                  
+                  <h4 id="title">Informações Pessoais</h4>
+                  <p>CPF: {{userData?.cpf}}</p>
+                  <p>Email: {{userData?.email}}</p>
+                  <p>Birth Date: {{userData?.birthDate}}</p>
+                  <p>Phone: {{userData?.phone}}</p>
+                  <p>Gender: {{userData?.gender}}</p>
+                </div>
+                <hr>
+                <div class="address">
+                    <h4 id="title">Address</h4>
+                    <p>{{userData.address.street}} {{userData?.address.number}}, {{userData?.address.neighborhood}}</p>
+                    <p>{{userData.address.city}}, {{userData?.address.state}} {{userData.address.zipCode}}</p>
+                </div>
+            </div>
+            <div class="actions">
+                <button >Edit Informations</button>
+                <button onclick="logout()">Log Out</button>
+            </div>
+        </div>
+        } @else {
+            <p class="fail">Carregando perfil...</p>
+    }
+</div>

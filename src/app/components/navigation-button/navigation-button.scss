@@ -1,0 +1,74 @@
+@use "../../../styles/variables.scss" as variables;
+.container{
+    height: 200px;
+    width: 200px ;
+    padding: 0px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    
+    .display-image{ 
+        height: 75%;
+        font-size: 50px;
+        width: 100%;
+        color: variables.$secondary-color;
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        border: 3px solid variables.$secondary-color;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    .name {
+        height: 25%; 
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        background-color: variables.$secondary-color;
+        transition: all 0.3s ease-in-out;
+
+        p {
+            margin: 0;
+            text-align: center;
+            color: variables.$bg-color;
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 1024px) { 
+            width: 300px;
+            height: 300px;
+        }
+    @media (max-width: 600px) { 
+            width: 150px;
+            height: 150px;
+    }
+
+    &:hover{
+        .display-image{
+        border-color: variables.$primary-color;
+        }
+        .name{
+            scale: 1.1;
+            background-color: variables.$primary-color;
+        }
+    }
+}
+
+// .container:hover{
+//     .display-image{
+//         border-color: variables.$primary-color;
+//     }
+//     .name{
+//         scale: 1.1;
+//         background-color: variables.$primary-color;
+//     }
+// }

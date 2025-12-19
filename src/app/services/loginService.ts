@@ -3,8 +3,7 @@ import { environment } from '../../environments';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginResponse } from '../interfaces/LoginResponse';
-import { Observable, tap } from 'rxjs';
-import { User } from '../models/User';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +18,9 @@ export class LoginService {
         .post<LoginResponse>(this.url + '/auth/login', {email, password})
         .pipe(tap((value) => {
             if(value.token) sessionStorage.setItem('auth-token', value.token);
-            if(value.email) sessionStorage.setItem('email', value.email)
+            if(value.email) sessionStorage.setItem('email', value.email);
+            if(value.role) sessionStorage.setItem('role', value.role);
+            if(value.personId) sessionStorage.setItem('personId', value.personId.toString());
           })
         );
   }
@@ -29,7 +30,26 @@ export class LoginService {
     depois dar continuidade com o registro de Usuário no sistema
   */
 
-  signup(){
-    
+  getToken(): string | null {
+    if (typeof sessionStorage !== 'undefined') {
+      return sessionStorage.getItem('auth-token');
+    }
+    return null;
+  }
+
+  getUserData(): any {
+    if (typeof sessionStorage !== 'undefined') {
+      return {
+        email: sessionStorage.getItem("email"),
+        role: sessionStorage.getItem('role'),
+        personId: sessionStorage.getItem('personId'),
+      };
+    }
+    return null;
+  }
+
+  logout() {
+    sessionStorage.clear();
+    this.router.navigate(['/login']);
   }
 }
