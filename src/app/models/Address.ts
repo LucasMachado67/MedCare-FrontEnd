@@ -1,6 +1,6 @@
 
 export class Address{
-    neigborhood: string = "";
+    neighborhood: string = "";  
     street:string = "";
     number: number = 0;
     complement: string = "";

@@ -14,8 +14,14 @@ export class PersonService {
   
   constructor(private httpClient: HttpClient, private router: Router){}
 
-  findById(id:number, role:String):Observable<Medic>{
-    const endpoint = role.toLowerCase();
-    return this.httpClient.get<Medic>(`${this.url}/${endpoint}/${id}`)
+  findById(id:number, role:String):Observable<any>{
+    const token = sessionStorage.getItem('auth-token');
+    let endpoint = "";
+    if(role == "USER"){
+       endpoint = "patient";
+    }else{
+       endpoint = role.toLowerCase();
+    }
+    return this.httpClient.get<any>(`${this.url}/${endpoint}/${id}`, { headers: { 'Authorization': `Bearer ${token}` }})
   }
 }

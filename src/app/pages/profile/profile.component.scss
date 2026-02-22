@@ -1,63 +1,118 @@
 @use "../../../styles/variables.scss" as var;
 
-.containers{
-    display: flex;
+
+.profile{
+    
     margin-top: 100px;
-    gap: 10px;
-    height: 100%;
+    margin-left: auto;  
+    margin-right: auto; 
+    height: 300px;
+    width: 80%; 
+
+    display: flex;
     align-items: center;
-    justify-content: center;
-    .profile-container{
-        margin-top: 10px;
-        width: 30%;
-        .profile-display{
+    padding-left: 20px;
+    border-radius: 10px;
+    background-color: rgb(234, 234, 236);
 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            .profile-image{
-    
-                display: flex;
-                border: 5px solid var.$secondary_color;
-                border-radius: 100%;
-                height: 150px;
-                width: 150px;
-                justify-content: center;
-                align-items: center;
-            }
-        }
+    .profile-image {
+        width: 180px;   
+        height: 150px;   
+        object-fit: cover; 
+        border-radius: 50%; 
+        border: 3px solid #fff;
+        margin-top: -50px;
+        border: 3px solid var.$secondary-color;
+        background-color: var.$primary-color;   
     }
-    
-    .informations{
-        display: flex;
-        flex-direction: column;
-        .personal{  
+
+    .main-information{
+        height: 200px;
+        width: 100%;
+        margin-left: 50px;
+        margin-right: 20px;
+
+        #nome{
+            font-size: x-large;
+        }
+        .information{
+            color: black;
+            font-weight: bold;
+        }
+        .person-info {
+            display: flex;        
+            gap: 30px;            
+            align-items: center;  
+        }
+
+        .item {
             display: flex;
-            flex-direction: row;
-            width: 100%;
-            border-bottom: 1px solid gray;
-            
-            .personal-info{
-                padding-right: 10px;
-            }
-            .address{
-                border-left: 1px solid gray;
-                padding-left: 10px;
+            flex-direction: column; // Mantém o "E-mail" em cima e o dado embaixo
+        
+            .title {
+                font-weight: bold;
+                font-size: 0.8rem;
+                color: gray;
             }
         }
 
-        .actions{
-            display: flex;
-            margin-top: 10px;
-            justify-content: space-between;
-            align-items: center;
+        .person-actions{
 
-            button{
-                color: white;
-                background-color: var.$primary-color;
-                border: 3px solid var.$secondary-color;
+
+            margin-top: 20px;
+            
+            .actions{
                 border-radius: 10px;
+                height: 50px;
+                border: 3px solid var.$secondary-color;
+                background-color: var.$primary-color;
+                color: var.$secondary-text-color;
+                font-size: larger;
+                &:hover{
+                    background-color: var.$secondary-color;
+                    cursor: pointer;
+                }
             }
-        }   
+            #edit{
+                margin-right: 10px;
+            }
+            #logout{
+                margin-left: 10px;
+            }
+        }
+
+        
+    }
+
+
+}
+.others{
+    margin-left: auto;  
+    margin-right: auto; 
+    height: 80px;
+    width: 80%; 
+
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-radius: 10px;
+}
+
+.additional-information{
+    margin-left: auto;  
+    margin-right: auto; 
+    height: 100px;
+    width: 80%; 
+
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-radius: 10px;
+    background-color: rgb(234, 234, 236);
+
+    .info{
+        display: flex;        
+        gap: 30px;            
+        align-items: center;
     }
 }

@@ -34,9 +34,20 @@ export class LoginComponent {
 
     submit(){
       this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-        next: () => {
-          this.router.navigate(["home"]);
+        next: (res) => {
+        console.log("Resposta no componente:", res);
+          if (res.mustChangePassword == true) {
+            // Redireciona para a tela de troca de senha
+            this.router.navigate(["update-password"]);
+          } else {
+            // Segue o fluxo normal
+            this.router.navigate(["home"]);
+          }
         },
+        error: (err) => {
+          
+          console.error("Erro ao fazer login", err);
+        }
       })
     }
     navigate(){

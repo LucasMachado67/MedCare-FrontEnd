@@ -4,4 +4,5 @@ export class User{
     password: string = "";
     role: string = "";
     personId: number = 0;
+    isFirstPassword: boolean = false;
 }

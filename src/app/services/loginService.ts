@@ -21,6 +21,8 @@ export class LoginService {
             if(value.email) sessionStorage.setItem('email', value.email);
             if(value.role) sessionStorage.setItem('role', value.role);
             if(value.personId) sessionStorage.setItem('personId', value.personId.toString());
+            console.log("Objeto completo vindo do Java:", value);
+            if(value.mustChangePassword) sessionStorage.setItem('mustChangePassword', value.mustChangePassword.toString())
           })
         );
   }
@@ -46,6 +48,14 @@ export class LoginService {
       };
     }
     return null;
+  }
+
+  updatePassword(newPassword: string) {
+    const token = sessionStorage.getItem('auth-token'); 
+    return this.httpClient.post(`${this.url}/auth/update-password`, 
+      { newPassword }, 
+      { headers: { 'Authorization': `Bearer ${token}` } }
+    );
   }
 
   logout() {

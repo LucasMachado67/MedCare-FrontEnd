@@ -1,0 +1,14 @@
+.item {
+    display: flex;
+    flex-direction: column; 
+        
+    .title {
+        font-weight: bold;
+        font-size: 0.8rem;
+        color: gray;
+    }
+    .information{
+        color: black;
+        font-weight: bold;
+    }
+}
