@@ -7,6 +7,9 @@ import { Header } from "../../components/header/header";
 import { ProfileButton } from "../../components/profile-button/profile-button";
 import { InfoDisplay } from "../../components/info-display/info-display";
 
+type RoleType = 'user' | 'medic' | 'assistant';
+
+
 @Component({
   selector: 'app-profile.component',
   imports: [CommonModule, Header, ProfileButton, InfoDisplay],
@@ -18,9 +21,13 @@ export class ProfileComponent implements OnInit{
   userData: any | undefined;
   role: string = "";
   formatedDate: string = "";
-  selectedItem: string = 'Endereço';
-
-  items = ['Endereço', 'Paciente', 'Documentos'];
+  selectedItem: string = "";
+  viewsProfile = {
+    user: ['Endereço', 'Paciente', 'Documentos'],
+    medic: ['Endereço', 'Medico'],
+    assistant: ['Endereço', 'Assistente']
+  };
+  items: string [] = [];
 
   select(item: string) {
     this.selectedItem = item;
@@ -34,6 +41,13 @@ export class ProfileComponent implements OnInit{
   ngOnInit(): void {
     const session = this.loginService.getUserData();
     this.role = session.role.toUpperCase();
+
+    const roleKey = this.role.toLowerCase() as RoleType;
+    this.items = this.viewsProfile[roleKey] || [];
+
+    if(this.items.length > 0){
+      this.selectedItem = this.items[0];
+    }
 
     if(session.personId){
       this.personService.findById(Number(session.personId) , this.role)

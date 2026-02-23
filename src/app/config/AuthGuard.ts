@@ -10,8 +10,8 @@ export class AuthGuard implements CanActivate{
     constructor(private router: Router){}
 
     canActivate():boolean {
-        const token = sessionStorage.getItem("token");
-        const mustChange = sessionStorage.getItem('must-change-password');
+        const token = sessionStorage.getItem("auth-token");
+        const mustChange = sessionStorage.getItem('mustChangePassword');
         console.log("mustChange" + mustChange);
         if(!token){
             this.router.navigate(["/login"]);

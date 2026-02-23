@@ -10,9 +10,10 @@ export class RoleGuard implements CanActivate{
 
     canActivate(route: any): boolean {
         const expectedRole = route.data['role'];
-        const userRole = localStorage.getItem("role");
-
+        const userRole = sessionStorage.getItem("role");
+        console.log(userRole, expectedRole)
         if(userRole !== expectedRole){
+            console.warn("Bloqueado pela role")
             this.router.navigate(['/login']);
             return false;
         }

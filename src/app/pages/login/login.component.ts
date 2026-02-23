@@ -37,11 +37,20 @@ export class LoginComponent {
         next: (res) => {
         console.log("Resposta no componente:", res);
           if (res.mustChangePassword == true) {
-            // Redireciona para a tela de troca de senha
+            // Redireciona para a tela de troca de senha se o login for pela primeira vez
             this.router.navigate(["update-password"]);
           } else {
             // Segue o fluxo normal
-            this.router.navigate(["home"]);
+            if(res.role == "MEDIC"){
+              this.router.navigate(['/medic/home']);
+            }else if(res.role == "ADMIN"){
+              this.router.navigate(["home"]);
+            }else if(res.role == "USER"){
+              this.router.navigate(["home"]);
+              
+            }else{
+              this.router.navigate(["home"]);
+            }
           }
         },
         error: (err) => {
