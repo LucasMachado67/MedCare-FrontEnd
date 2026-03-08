@@ -11,8 +11,7 @@ export class AuthGuard implements CanActivate{
 
     canActivate():boolean {
         const token = sessionStorage.getItem("auth-token");
-        const mustChange = sessionStorage.getItem('mustChangePassword');
-        console.log("mustChange" + mustChange);
+        const mustChange = sessionStorage.getItem('must-change-password');
         if(!token){
             this.router.navigate(["/login"]);
             return false;
@@ -21,8 +20,6 @@ export class AuthGuard implements CanActivate{
             this.router.navigate(['update-password']);
             return false;
         }
-
-        
         return true;
     }
 

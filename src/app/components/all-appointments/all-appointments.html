@@ -1,0 +1,22 @@
+<div class="container">
+    
+    <div class="actions">
+
+    </div>
+
+    <div class="appointments">
+
+        @for(item of appointmentData; track item.id){
+            <div class="info">
+                <div class="appointment">
+                    
+                    <span>{{item.date}}</span>
+                    <span>{{item.status}}</span>
+                    <span>{{item.createdAt}}</span>
+                </div>
+                <button class="btn-details"><i class="fa-solid fa-angle-right"></i></button>
+            </div>
+        }
+
+    </div>
+</div>

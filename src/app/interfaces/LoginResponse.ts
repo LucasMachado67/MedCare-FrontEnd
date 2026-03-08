@@ -4,4 +4,6 @@ export interface LoginResponse {
     role: string;
     mustChangePassword: boolean;
     personId: number;
+    tenantId: number;
+    tenantName: string;
 }

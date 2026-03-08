@@ -1,0 +1,26 @@
+<div class="tree-item-container">
+  <div 
+    class="node-row" 
+    [class.is-open]="node.isOpen"
+    (click)="toggle()">
+    
+    <span class="icon-wrapper">
+        @if (node.children?.length) {
+            <i class="chevron" [class.rotated]="node.isOpen"><i class="fa-solid fa-angle-right"></i></i>
+        }
+    </span>
+
+    <span class="folder-icon"><i class="fa-solid fa-folder"></i></span>
+    <span class="node-name">{{ node.name }}</span>
+  </div>
+    @if(node.isOpen && node.children?.length){
+
+      <div class="node-children">
+        @for (child of node.children; track child.name) {
+              <app-tree-view 
+            [node]="child">
+            </app-tree-view>
+        }
+    </div>
+    }
+</div>

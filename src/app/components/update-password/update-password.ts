@@ -14,6 +14,7 @@ import { PrimaryInput } from '../primary-input/primary-input';
 export class UpdatePassword {
 
   passwordForm: FormGroup;
+  role:string | null = "";
 
   constructor(private router: Router, private loginService: LoginService) {
     this.passwordForm = new FormGroup({
@@ -30,12 +31,23 @@ export class UpdatePassword {
 
     this.loginService.updatePassword(this.passwordForm.value.newPassword).subscribe({
       next: () => {
-        // Importante: após trocar, atualizamos a flag local
+        //atualizamos a flag local para false
         sessionStorage.setItem("must-change-password", "false");
-        alert("Senha atualizada!");
-        this.router.navigate(["home"]);
+        console.log("Senha atualizada")
+        this.navigation();
       },
       error: () => alert("Erro ao atualizar senha.")
     });
+  }
+
+  navigation():void{
+    this.role = sessionStorage.getItem('role');
+    if(this.role == "ADMIN"){
+      this.router.navigate(["admin/home"]);
+    }else if(this.role == "MEDIC"){
+      this.router.navigate(["medic/home"]);
+    }else{
+      this.router.navigate(["home"]);
+    }
   }
 }

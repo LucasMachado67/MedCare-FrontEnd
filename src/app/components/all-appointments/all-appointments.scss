@@ -1,0 +1,52 @@
+@use '../../../styles/variables.scss' as variables;
+
+.container{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    .actions{
+        height: 150px;
+        width: 100%;
+        border: 3px solid red;
+    }
+
+    .appointments{
+        padding: 40px 100px 0px 100px;
+        display: flex;
+        .info{
+            display: flex;
+            width: 100%;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            .appointment{
+                border: 3px solid variables.$secondary-color;
+                width: 90%;
+                height: 100px;
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                
+            }
+            .btn-details{
+                width: 10%;
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+                font-size: larger;
+                background-color: variables.$secondary-color;
+                color: variables.$secondary-text-color;
+                border: none;
+                transition: all 0.3s ease;  
+                &:hover{
+                    background-color: variables.$primary-color;
+                }
+            }
+            
+            &:hover{
+                background-color: variables.$terciary-color;
+            }
+        }
+    }
+}

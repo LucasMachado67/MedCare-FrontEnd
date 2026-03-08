@@ -3,7 +3,7 @@ import { environment } from '../../environments';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginResponse } from '../interfaces/LoginResponse';
-import { tap } from 'rxjs';
+import { map, Observable, switchMap, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,17 +21,24 @@ export class LoginService {
             if(value.email) sessionStorage.setItem('email', value.email);
             if(value.role) sessionStorage.setItem('role', value.role);
             if(value.personId) sessionStorage.setItem('personId', value.personId.toString());
-            console.log("Objeto completo vindo do Java:", value);
+            if(value.tenantId) sessionStorage.setItem('tenantId', value.tenantId.toString());
             if(value.mustChangePassword) sessionStorage.setItem('mustChangePassword', value.mustChangePassword.toString())
-          })
-        );
+          }),
+          switchMap((loginResponse) =>
+          this.getCompanyURL().pipe(
+            tap((companyName) => {
+              sessionStorage.setItem('companyName', companyName);
+            }),
+            map(() => loginResponse)
+          )
+        )
+      );
   }
   /* 
     Caso o usuário não possuir login,
     ele deverá criar o próprio objeto Person e
     depois dar continuidade com o registro de Usuário no sistema
   */
-
   getToken(): string | null {
     if (typeof sessionStorage !== 'undefined') {
       return sessionStorage.getItem('auth-token');
@@ -56,6 +63,14 @@ export class LoginService {
       { newPassword }, 
       { headers: { 'Authorization': `Bearer ${token}` } }
     );
+  }
+
+  getCompanyURL():Observable<string>{
+    const token = sessionStorage.getItem('auth-token');
+    const tenantId = sessionStorage.getItem('tenantId');
+    return this.httpClient.get<string>(`${this.url}/company/${tenantId}`,
+    { headers: { 'Authorization': `Bearer ${token}` }}
+    )
   }
 
   logout() {

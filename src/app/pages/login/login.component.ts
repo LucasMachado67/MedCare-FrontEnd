@@ -36,20 +36,22 @@ export class LoginComponent {
       this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
         next: (res) => {
         console.log("Resposta no componente:", res);
+        const company = sessionStorage.getItem('companyName');
+        console.log(company);
           if (res.mustChangePassword == true) {
             // Redireciona para a tela de troca de senha se o login for pela primeira vez
             this.router.navigate(["update-password"]);
           } else {
             // Segue o fluxo normal
             if(res.role == "MEDIC"){
-              this.router.navigate(['/medic/home']);
+              this.router.navigate([`/${company}/medic/home`]);
             }else if(res.role == "ADMIN"){
-              this.router.navigate(["home"]);
+              this.router.navigate([`/${company}/admin/home`]);
             }else if(res.role == "USER"){
-              this.router.navigate(["home"]);
+              this.router.navigate([`/${company}/home`]);
               
             }else{
-              this.router.navigate(["home"]);
+              this.router.navigate([`/${company}/home`]);
             }
           }
         },

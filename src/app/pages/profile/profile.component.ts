@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/loginService';
-import { ActivatedRoute, Router } from '@angular/router';
 import { PersonService } from '../../services/person.service';
 import { CommonModule } from '@angular/common';
 import { Header } from "../../components/header/header";
@@ -33,7 +32,7 @@ export class ProfileComponent implements OnInit{
     this.selectedItem = item;
   }
 
-  constructor(private loginService:LoginService, private route: ActivatedRoute, private router:Router, private personService:PersonService){}
+  constructor(private loginService:LoginService, private personService:PersonService){}
 
   logout(){
     this.loginService.logout();
