@@ -1,4 +1,8 @@
+
 <div class="wizard-container">
+  <div class="title">
+    <h1>Medic Registration</h1>
+  </div>
   <div class="steps">
     <div class="step" [class.active]="step === 1">1. Dados pessoais</div>
     <div class="step" [class.active]="step === 2">2. Endereço</div>
@@ -54,16 +58,14 @@
     <!-- ETAPA 3: PATIENT -->
      @if(step === 3){
          <div class="form-section" formGroupName="patient">
-           <h2>Informações médicas</h2>
+           <h2>Informações do médico</h2>
      
-           <app-primary-input formControlName="healthPlan" label="Plano de saúde" [maxLength]="50"></app-primary-input>
-           <app-primary-input formControlName="description" label="Descrição" [maxLength]="50"></app-primary-input>
-           <app-primary-input formControlName="symptoms" label="Sintomas"></app-primary-input>
-           <app-primary-input formControlName="allergies" label="Alergias"></app-primary-input>
+           <app-primary-input formControlName="crm" label="CRM" [maxLength]="13"></app-primary-input>
+           <app-primary-input formControlName="medicSpeciality" label="Especialidade" [maxLength]="50"></app-primary-input>
      
            <div class="actions">
              <button type="button" class="btn prev" (click)="prevStep()">Voltar</button>
-             <button type="submit" class="btn submit">Finalizar</button>
+             <button type="submit" class="btn submit" (click)="submit()">Finalizar</button>
            </div>
          </div>
      }

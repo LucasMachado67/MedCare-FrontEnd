@@ -11,6 +11,11 @@
   font-size: 14px;
 }
 
+.node-row a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .node-row:hover {
   background-color: #f0f7ff; 
 }

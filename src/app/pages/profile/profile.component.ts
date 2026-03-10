@@ -8,7 +8,6 @@ import { InfoDisplay } from "../../components/info-display/info-display";
 
 type RoleType = 'user' | 'medic' | 'assistant';
 
-
 @Component({
   selector: 'app-profile.component',
   imports: [CommonModule, Header, ProfileButton, InfoDisplay],

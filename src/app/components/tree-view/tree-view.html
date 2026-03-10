@@ -6,21 +6,27 @@
     
     <span class="icon-wrapper">
         @if (node.children?.length) {
-            <i class="chevron" [class.rotated]="node.isOpen"><i class="fa-solid fa-angle-right"></i></i>
+            <i class="chevron" [class.rotated]="node.isOpen">
+                <i class="fa-solid fa-angle-right"></i>
+            </i>
         }
     </span>
 
-    <span class="folder-icon"><i class="fa-solid fa-folder"></i></span>
-    <span class="node-name">{{ node.name }}</span>
-  </div>
-    @if(node.isOpen && node.children?.length){
+    @if(node.link){
+        <a [routerLink]="node.link" (click)="$event.stopPropagation()">
+            {{ node.name }}
+        </a>
+    } @else {
+        <span class="node-name">{{ node.name }}</span>
+    }
 
-      <div class="node-children">
+  </div>
+
+  @if(node.isOpen && node.children?.length){
+    <div class="node-children">
         @for (child of node.children; track child.name) {
-              <app-tree-view 
-            [node]="child">
-            </app-tree-view>
+            <app-tree-view [node]="child"></app-tree-view>
         }
     </div>
-    }
+  }
 </div>

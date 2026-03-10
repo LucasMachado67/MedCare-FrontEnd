@@ -26,7 +26,15 @@ export class HomeAdmin {
       isOpen: false,
       children: [
         { name: 'All Schedules', children: [] , link:'/schedule/all'},
-        { name: 'New Schedule', children: [] , link:'/schedule/all'},
+        { name: 'New Schedule', children: [] , link:'/schedule/register'},
+      ]
+     },
+     { 
+      name: 'Medic',
+      isOpen: false,
+      children: [
+        { name: 'All Medics', children: [] , link:'/medic/all'},
+        { name: 'New Medic', children: [] , link:'/medic/register'},
       ]
      },
     { 
@@ -34,7 +42,7 @@ export class HomeAdmin {
       isOpen: false,
       children: [
         { name: 'All Appoinments', children: [], link:'/appointment/all' },
-        { name: 'New Appoinment', children: [], link:'/appointment/all' },
+        { name: 'New Appoinment', children: [], link:'/appointment/register' },
       ]
      },
      { 
@@ -42,7 +50,7 @@ export class HomeAdmin {
       isOpen: false,
       children: [
         { name: 'All Assistents', children: [], link:'/assistent/all' },
-        { name: 'New Assistents', children: [], link:'/assistent/all' },
+        { name: 'New Assistents', children: [], link:'/assistent/register' },
       ]
      }
   ];

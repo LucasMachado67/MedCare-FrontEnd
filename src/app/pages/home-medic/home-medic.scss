@@ -29,9 +29,11 @@
     
         .links{
             margin-top: 30px;
-            height: 100px;
+            height: 235px;
             width: 100%;
             border-top: 3px solid variables.$secondary-color;
+            max-height: 235px;
+            overflow-y: auto;
         }
     }
 

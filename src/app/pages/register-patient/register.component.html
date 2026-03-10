@@ -1,0 +1,74 @@
+<div class="wizard-container">
+  <div class="title">
+      <h1>Patient Registration</h1>
+  </div>
+  <div class="steps">
+    <div class="step" [class.active]="step === 1">1. Dados pessoais</div>
+    <div class="step" [class.active]="step === 2">2. Endereço</div>
+    <div class="step" [class.active]="step === 3">3. Informações médicas</div>
+  </div>
+
+  <form [formGroup]="personForm" (ngSubmit)="submit()">
+    <!-- ETAPA 1: PERSON -->
+     @if(step === 1){
+         <div class="form-section">
+           <h2>Dados pessoais</h2>
+     
+           <app-primary-input formControlName="name" label="Nome completo"></app-primary-input>
+           <app-primary-input formControlName="birthDate" label="Data de nascimento" type="Date"></app-primary-input>
+           <app-primary-input formControlName="cpf" label="CPF" [maxLength]="11" [onlyNumbers]="true"></app-primary-input>
+           <app-primary-select
+            formControlName="gender"
+            label="Gênero"
+            [options]="['Masculino', 'Feminino']">
+          </app-primary-select>
+           <app-primary-input formControlName="email" label="Email" type="email"></app-primary-input>
+           <app-primary-input formControlName="phone" label="Telefone" mask="phone" [maxLength]="11" [onlyNumbers]="true"></app-primary-input>
+     
+           <button type="button" class="btn next" (click)="nextStep()">Próximo</button>
+         </div>    
+        }
+        <!-- ETAPA 2: ADDRESS -->
+    @if(step === 2){
+
+        <div class="form-section" formGroupName="address">
+          <h2>Endereço</h2>
+    
+          <app-primary-input formControlName="street" label="Rua" [maxLength]="50"></app-primary-input>
+          <app-primary-input formControlName="number" label="Número" [onlyNumbers]="true" [maxLength]="4"></app-primary-input>
+          <app-primary-input formControlName="neighborhood" label="Bairro" [maxLength]="50"></app-primary-input>
+          <app-primary-input formControlName="city" label="Cidade" [maxLength]="50"></app-primary-input>
+          <app-primary-input formControlName="state" label="Estado (UF)" [maxLength]="2"></app-primary-input>
+          <app-primary-input formControlName="zipCode" label="CEP" mask="zipCode" [maxLength]="8" [onlyNumbers]="true"></app-primary-input>
+          <app-primary-select
+          formControlName="habitation"
+          label="Habitação"
+          [options]="['APARTMENT', 'HOUSE', 'KITNET']">
+        </app-primary-select>
+        <app-primary-input formControlName="complement" label="Complemento" [maxLength]="50"></app-primary-input>
+          <div class="actions">
+            <button type="button" class="btn prev" (click)="prevStep()">Voltar</button>
+            <button type="button" class="btn next" (click)="nextStep()">Próximo</button>
+          </div>
+        </div>
+    }
+
+
+    <!-- ETAPA 3: PATIENT -->
+     @if(step === 3){
+         <div class="form-section" formGroupName="patient">
+           <h2>Informações médicas</h2>
+     
+           <app-primary-input formControlName="healthPlan" label="Plano de saúde" [maxLength]="50"></app-primary-input>
+           <app-primary-input formControlName="description" label="Descrição" [maxLength]="50"></app-primary-input>
+           <app-primary-input formControlName="symptoms" label="Sintomas"></app-primary-input>
+           <app-primary-input formControlName="allergies" label="Alergias"></app-primary-input>
+     
+           <div class="actions">
+             <button type="button" class="btn prev" (click)="prevStep()">Voltar</button>
+             <button type="submit" class="btn submit">Finalizar</button>
+           </div>
+         </div>
+     }
+  </form>
+</div>

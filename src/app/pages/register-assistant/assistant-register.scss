@@ -8,6 +8,12 @@
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
+  .title{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
   .steps {
     display: flex;
     justify-content: space-between;
