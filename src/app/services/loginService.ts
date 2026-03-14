@@ -23,7 +23,8 @@ export class LoginService {
             if(value.personId) sessionStorage.setItem('personId', value.personId.toString());
             if(value.tenantId) sessionStorage.setItem('tenantId', value.tenantId.toString());
             if(value.mustChangePassword) sessionStorage.setItem('mustChangePassword', value.mustChangePassword.toString())
-          }),
+          })
+        ,
           switchMap((loginResponse) =>
           this.getCompanyURL().pipe(
             tap((companyName) => {
@@ -65,12 +66,12 @@ export class LoginService {
     );
   }
 
-  getCompanyURL():Observable<string>{
+  getCompanyURL():Observable<any>{
     const token = sessionStorage.getItem('auth-token');
     const tenantId = sessionStorage.getItem('tenantId');
-    return this.httpClient.get<string>(`${this.url}/company/${tenantId}`,
-    { headers: { 'Authorization': `Bearer ${token}` }}
-    )
+    return this.httpClient.get<any>(`${this.url}/company/${tenantId}`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
   }
 
   logout() {

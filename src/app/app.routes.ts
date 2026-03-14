@@ -12,6 +12,7 @@ import { HomeMedic } from './pages/home-medic/home-medic';
 import { HomeAdmin } from './pages/home-admin/home-admin';
 import { MedicRegister } from './pages/register-medic/medic-register';
 import { AssistantRegister } from './pages/register-assistant/assistant-register';
+import { HomeAssistant } from './pages/home-assistant/home-assistant';
 
 export const routes: Routes = [
     {path: '',redirectTo: 'home',pathMatch: 'full'},
@@ -20,7 +21,8 @@ export const routes: Routes = [
     // {path: ':company/admin/home', component: HomeAdmin, canActivate: [AuthGuard, RoleGuard], data: {roles: ["ADMIN"]}},
     {path: 'home', component: Home},
     {path: 'medic/home', component: HomeMedic},
-    {path: 'admin/home', component: HomeAdmin},
+    {path: ':company/admin/home', component: HomeAdmin},
+    {path: 'assistant/home', component: HomeAssistant},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'medic/register', component: MedicRegister},
