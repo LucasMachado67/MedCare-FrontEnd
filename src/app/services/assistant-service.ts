@@ -11,10 +11,15 @@ import { Observable } from 'rxjs';
 export class AssistantService {
   
   readonly url = environment.url;
-  
+  readonly token = sessionStorage.getItem('auth-token')
+  readonly company = sessionStorage.getItem('tenantId')
   constructor(private http: HttpClient, private router: Router){}
-
+  
   createAssistant(assistant: Assistant):Observable<Assistant>{
-    return this.http.post<Assistant>(this.url + "/assistant/create", assistant)
+    return this.http.post<Assistant>(
+      this.url + `/${this.company}/assistant/create`,
+      assistant,
+      { headers: { 'Authorization': `Bearer ${this.token}` }}
+    )
   }
 }

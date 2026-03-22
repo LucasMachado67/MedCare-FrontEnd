@@ -16,12 +16,13 @@ export class PersonService {
 
   findById(id:number, role:String):Observable<any>{
     const token = sessionStorage.getItem('auth-token');
+    const tenantId = sessionStorage.getItem('tenantId');
     let endpoint = "";
     if(role == "USER"){
        endpoint = "patient";
     }else{
        endpoint = role.toLowerCase();
     }
-    return this.httpClient.get<any>(`${this.url}/${endpoint}/${id}`, { headers: { 'Authorization': `Bearer ${token}` }})
+    return this.httpClient.get<any>(`${this.url}/${tenantId}/${endpoint}/${id}`, { headers: { 'Authorization': `Bearer ${token}` }})
   }
 }

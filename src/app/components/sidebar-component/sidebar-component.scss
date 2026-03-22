@@ -1,0 +1,84 @@
+
+@use "../../../styles/variables.scss" as variables;
+.sidebar{
+  height: 100vh;
+  width: 50px;
+  z-index: 100;
+  position: relative;
+
+  .closedbar{
+    height: 100vh;
+    width: 50px;
+    background-color: variables.$assistant-primary-color;
+  }
+  .toggle-bar.floating {
+        position: absolute;
+        background-color: variables.$assistant-primary-color;
+        color: white;
+        border: none;
+        top: 20px;
+        transition: all ease 0.3s;
+        height: 50px;
+        width: 50px;
+        &:hover{
+            background-color: aliceblue;
+            scale: 1.1;
+            color: black;
+        }
+  }
+  .explorer{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 250px;
+        height: 100vh;
+        background-color: variables.$assistant-primary-color;
+        color: white;
+        overflow: hidden;
+        box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 250px;
+            padding: 20px;
+            button{
+                border: none;
+                background: none;
+                color: white;
+                font-weight: bold;
+                border-radius: 100%;
+                transition: all ease 0.3s;
+                &:hover{
+                    background-color: aliceblue;
+                    scale: 1.1;
+                    color: black;
+
+                }
+            }
+        }
+        .image{
+            height:200px;
+            margin-top: 30px;
+            width: 200px;
+    
+            img{
+                height: 195px;
+                width: 195px;
+                z-index: -1;
+            }
+        }
+    
+        .links{
+            margin-top: 30px;
+            height: 350px;
+            width: 100%;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+    }
+}
+

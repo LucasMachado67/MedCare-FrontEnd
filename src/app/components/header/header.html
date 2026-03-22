@@ -1,15 +1,16 @@
 <div class="containerh">
 
     <div class="home">
-        <a routerLink="{{home}}"><i class="fa-solid fa-house fa-2xl"></i></a>
+        <a [routerLink]="home"><i class="fa-solid fa-house fa-2xl"></i></a>
     </div>
 
     <h2>{{title}}</h2>
-
-    <div class="profile">
-        <a routerLink="/${tenantId}/user/profile">
-            <i class="fa-solid fa-user"></i>
-        </a>
-        <p>Profile</p>
-    </div>
+    @if (role != "ADMIN") {
+        <div class="profile">
+            <a routerLink="/{{this.company}}/user/profile">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <p>Profile</p>
+        </div>
+    }
 </div>

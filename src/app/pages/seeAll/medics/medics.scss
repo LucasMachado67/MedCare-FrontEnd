@@ -1,0 +1,22 @@
+.container {
+    max-width: 1000px;
+}
+
+table {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead th {
+    text-align: center;
+}
+
+tbody td {
+    vertical-align: middle;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

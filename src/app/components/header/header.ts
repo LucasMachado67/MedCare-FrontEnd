@@ -11,15 +11,28 @@ export class Header implements OnInit{
 
   title: string = "Med Care";
   home: string = "";
-  tenantId = sessionStorage.getItem('tenanId')
+  company = sessionStorage.getItem('companyName')
+  role = sessionStorage.getItem('role');
+  route: (string | null)[] = [];
   ngOnInit(): void {
-    const role = sessionStorage.getItem('role')
-    if(role === "MEDIC"){
-      this.home = "/${tenantId}/medic/home"
-    }else if(role === "ADMIN"){
-      this.home = "/${tenantId}/admin/home"
+    if(this.role === "MEDIC"){
+      this.home = `/${this.company}/medic/home`
+    }else if(this.role === "ADMIN"){
+      this.home = `/${this.company}/admin/home`
     }else{
-      this.home = "/${tenantId}/home"
+      this.home = `/${this.company}/home`
+    }
+  }
+
+  navigate():void{
+    if(this.role == "ADMIN"){ 
+      this.route = [this.company, "admin", "home"];
+    }else if(this.role == "MEDIC"){
+      this.route = [this.company, "medic", "home"];
+    }else if(this.role == "ASSISTANT"){
+      this.route = [this.company, "assistant", "home"];
+    }else{
+      this.route = [this.company, "home"];
     }
   }
 

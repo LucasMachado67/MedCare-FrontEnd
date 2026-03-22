@@ -14,8 +14,21 @@ export class MedicService {
   
   constructor(private http: HttpClient, private router: Router){}
 
+  token = sessionStorage.getItem('auth-token')
+  company = sessionStorage.getItem('tenantId')
   createMedic(medic: Medic):Observable<Medic>{
-    return this.http.post<Medic>(this.url + "/medic/create", medic)
+    return this.http.post<Medic>(
+      this.url + `/${this.company}/medic/create`,
+      medic,
+      { headers: { 'Authorization': `Bearer ${this.token}` }}
+    )
+  }
+
+  getAllMedics():Observable<Medic[]>{
+    return this.http.get<Medic[]>(
+      this.url + `/${this.company}/medic/all`,
+      {headers: {'Authorization': `Bearer ${this.token}`}}
+    )
   }
   
 }

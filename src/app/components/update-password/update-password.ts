@@ -41,13 +41,20 @@ export class UpdatePassword {
   }
 
   navigation():void{
-    this.role = sessionStorage.getItem('role');
-    if(this.role == "ADMIN"){
-      this.router.navigate(["admin/home"]);
-    }else if(this.role == "MEDIC"){
-      this.router.navigate(["medic/home"]);
-    }else{
-      this.router.navigate(["home"]);
+    const role = sessionStorage.getItem('role');
+    const company = sessionStorage.getItem('company');
+
+    if(role === "ADMIN"){
+      this.router.navigate([company, "admin", "home"]);
+    } 
+    else if(role === "MEDIC"){
+      this.router.navigate([company, "medic", "home"]);
+    }
+    else if(role === "ASSISTANT"){
+      this.router.navigate([`${company}/assistant/home`])
+    }
+    else{
+      this.router.navigate([company, "home"]);
     }
   }
 }

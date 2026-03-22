@@ -1,82 +1,83 @@
 <app-header></app-header>
 
-<div class="profile">
-  
-  <div class="profile-image">
-  </div>
+@if(userData){
+  <div class="profile">
+    
 
-  <div class="main-information">
-    <p id="nome" class="information">{{userData.name}}</p>
-    <div class="person-info">
-      <app-info-display label="E-mail" text="{{userData.email}}"></app-info-display>
-      <app-info-display label="Telefone" text="{{userData.phone}}"></app-info-display>
-      <app-info-display label="CPF" text="{{userData.cpf}}"></app-info-display>
-      <app-info-display label="Data de Nascimento" text="{{formatedDate}}"></app-info-display>
-      <app-info-display label="Gênero" text="{{userData.gender}}"></app-info-display>
+    <div class="profile-image"></div>
+    <div class="main-information">
+      <p id="name" class="information">{{userData?.name}}</p>
+      <div class="person-info">
+        <app-info-display label="E-mail" text="{{userData.email}}"></app-info-display>
+        <app-info-display label="Telefone" text="{{userData.phone}}"></app-info-display>
+        <app-info-display label="CPF" text="{{userData.cpf}}"></app-info-display>
+        <app-info-display label="Data de Nascimento" text="{{formatedDate}}"></app-info-display>
+        <app-info-display label="Gênero" text="{{userData.gender}}"></app-info-display>
+      </div>
+      
+      <div class="person-actions">
+        <button class="actions" id="edit">
+          Alterar Informações
+        </button>
+        <button  (click)="logout()" class="actions" id="logout">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          sair
+        </button>
+      </div>
     </div>
-
-    <div class="person-actions">
-      <button class="actions" id="edit">
-        Alterar Informações
-      </button>
-      <button  (click)="logout()" class="actions" id="logout">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        sair
-      </button>
-    </div>
   </div>
-</div>
-<div class="others">
-  <app-profile-button 
-  *ngFor="let item of items"
-  class="button"
-  [class.active]="selectedItem === item"
-  (click)="select(item)"
-  texto="{{item}}">
-</app-profile-button>
+  <div class="others">
+    <app-profile-button 
+    *ngFor="let item of items"
+    class="button"
+    [class.active]="selectedItem === item"
+    (click)="select(item)"
+    texto="{{item}}">
+  </app-profile-button>
 
-</div>
-<div class="additional-information">
-
-  @switch (selectedItem) {
-    @case ('Endereço') {
-      <div class="info">
-        <app-info-display label="State" text="{{userData.address.state}}"></app-info-display>
-        <app-info-display label="City" text="{{userData.address.city}}"></app-info-display>
-        <app-info-display label="Bairro" text="{{userData.address.neighborhood}}"></app-info-display>
-        <app-info-display label="Rua" text="{{userData.address.street}}"></app-info-display>
-        <app-info-display label="Número" text="{{userData.address.number}}"></app-info-display>
-        <app-info-display label="CEP" text="{{userData.address.zipCode}}"></app-info-display>
-        <app-info-display label="Habitação" text="{{userData.address.habitation}}"></app-info-display>
-        <app-info-display label="Complemento" text="{{userData.address.complement}}"></app-info-display>
-      </div>
+  </div>
+  <div class="additional-information">
+    
+    @switch (selectedItem) {
+      @case ('Endereço') {
+        <div class="info">
+          <app-info-display label="State" text="{{userData.address.state}}"></app-info-display>
+          <app-info-display label="City" text="{{userData.address.city}}"></app-info-display>
+          <app-info-display label="Bairro" text="{{userData.address.neighborhood}}"></app-info-display>
+          <app-info-display label="Rua" text="{{userData.address.street}}"></app-info-display>
+          <app-info-display label="Número" text="{{userData.address.number}}"></app-info-display>
+          <app-info-display label="CEP" text="{{userData.address.zipCode}}"></app-info-display>
+          <app-info-display label="Habitação" text="{{userData.address.habitation}}"></app-info-display>
+          <app-info-display label="Complemento" text="{{userData.address.complement}}"></app-info-display>
+        </div>
+      }
+      @case ('Paciente') {
+        <div class="info">
+          <app-info-display label="Plano de Saúde" text="{{userData.healthPlan}}"></app-info-display>
+          <app-info-display label="Alergias" text="{{userData.allergies}}"></app-info-display>
+        </div>
+      }
+      @case ('Medico') {
+        <div class="info">
+          <app-info-display label="CRM" text="{{userData.crm}}"></app-info-display>
+          <app-info-display label="Especialidade" text="{{userData.medicalSpeciality}}"></app-info-display>
+        </div>
+      }
+      @case ('Assistente') {
+        <div class="info">
+          <app-info-display label="Nº Registro" text="{{userData.registrationNumber}}"></app-info-display>
+          <app-info-display label="Situação" text="{{userData.status}}"></app-info-display>
+        </div>
+      }
+      @case ('Documentos') {
+        <div class="info">
+          <p>Sem informações disponíveis</p>
+        </div>
+      }
+      @default {
+        <p>Selecione uma opção ou informação não disponível.</p>
+      }
     }
-    @case ('Paciente') {
-      <div class="info">
-        <app-info-display label="Plano de Saúde" text="{{userData.healthPlan}}"></app-info-display>
-        <app-info-display label="Alergias" text="{{userData.allergies}}"></app-info-display>
-      </div>
-    }
-    @case ('Medico') {
-      <div class="info">
-        <app-info-display label="CRM" text="{{userData.crm}}"></app-info-display>
-        <app-info-display label="Especialidade" text="{{userData.medicalSpeciality}}"></app-info-display>
-      </div>
-    }
-    @case ('Assistente') {
-      <div class="info">
-        <app-info-display label="Nº Registro" text="{{userData.registrationNumber}}"></app-info-display>
-        <app-info-display label="Situação" text="{{userData.status}}"></app-info-display>
-      </div>
-    }
-    @case ('Documentos') {
-      <div class="info">
-        <p>Sem informações disponíveis</p>
-      </div>
-    }
-    @default {
-      <p>Selecione uma opção ou informação não disponível.</p>
-    }
-  }
-
-</div>
+    
+  </div>
+}

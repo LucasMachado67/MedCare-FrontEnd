@@ -38,7 +38,7 @@ export class MedicRegister {
       habitation: ['',[Validators.required]]
     }),
 
-    patient: this.fb.group({
+    medic: this.fb.group({
       crm: [''],
       medicalSpeciality: ['']
     })

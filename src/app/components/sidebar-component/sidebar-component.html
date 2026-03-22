@@ -1,0 +1,27 @@
+<div class="sidebar">
+  @if (!isOpen) {
+    <div class="closedbar">
+        
+        <button class="toggle-bar floating" (click)="activateSideBar()"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  }
+
+  @if (isOpen) {
+    <div class="explorer" @slideInOut>
+      <div class="sidebar-header">
+        <span class="brand-title">Menu</span>
+        <button class="toggle-bar" (click)="activateSideBar()"><i class="fa-solid fa-arrow-left"></i></button>
+      </div>
+
+      <div class="image">
+        <img src="../../../assets/images/Medicine.jpg" alt="">
+      </div>
+
+      <div class="links">
+        @for (n of nodes; track n.name) {
+          <app-tree-view [node]="n"></app-tree-view>
+        }
+      </div>
+    </div>
+  }
+</div>

@@ -16,7 +16,7 @@ export class AssistantRegister {
 
   personForm: FormGroup;
 
-  //Incializando os formulários que serão necessários para o método de criação de medic
+  //Incializando os formulários que serão necessários para o método de criação de assistant
   constructor(private fb: FormBuilder, private assistantService: AssistantService, private router:Router) {
     
     this.personForm = this.fb.group({

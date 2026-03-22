@@ -13,9 +13,9 @@ export class PatientService {
   readonly url = environment.url;
   
   constructor(private http: HttpClient, private router: Router){}
-
+  company = sessionStorage.getItem('tenantId');
   createPatient(patient: Patient):Observable<Patient>{
-    return this.http.post<Patient>(this.url + "/patient/create", patient)
+    return this.http.post<Patient>(this.url + `/${this.company}/patient/create`, patient)
   }
   
 }

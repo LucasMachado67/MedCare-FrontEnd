@@ -57,11 +57,11 @@
 
     <!-- ETAPA 3: PATIENT -->
      @if(step === 3){
-         <div class="form-section" formGroupName="patient">
+         <div class="form-section" formGroupName="medic">
            <h2>Informações do médico</h2>
      
            <app-primary-input formControlName="crm" label="CRM" [maxLength]="13"></app-primary-input>
-           <app-primary-input formControlName="medicSpeciality" label="Especialidade" [maxLength]="50"></app-primary-input>
+           <app-primary-input formControlName="medicalSpeciality" label="Especialidade" [maxLength]="50"></app-primary-input>
      
            <div class="actions">
              <button type="button" class="btn prev" (click)="prevStep()">Voltar</button>

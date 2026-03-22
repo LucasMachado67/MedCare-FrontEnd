@@ -27,7 +27,8 @@ export class LoginService {
         ,
           switchMap((loginResponse) =>
           this.getCompanyURL().pipe(
-            tap((companyName) => {
+            tap((response) => {
+              const companyName = response.companyName.toLowerCase().replace(/\s+/g, '')
               sessionStorage.setItem('companyName', companyName);
             }),
             map(() => loginResponse)
@@ -66,7 +67,7 @@ export class LoginService {
     );
   }
 
-  getCompanyURL():Observable<any>{
+  getCompanyURL():Observable<any>{  
     const token = sessionStorage.getItem('auth-token');
     const tenantId = sessionStorage.getItem('tenantId');
     return this.httpClient.get<any>(`${this.url}/company/${tenantId}`, {

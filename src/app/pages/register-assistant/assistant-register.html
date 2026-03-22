@@ -6,7 +6,6 @@
   <div class="steps">
     <div class="step" [class.active]="step === 1">1. Dados pessoais</div>
     <div class="step" [class.active]="step === 2">2. Endereço</div>
-    <div class="step" [class.active]="step === 3">3. Informações médicas</div>
   </div>
 
   <form [formGroup]="personForm" (ngSubmit)="submit()">
