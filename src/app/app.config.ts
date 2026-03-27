@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, RouterModule } from '@angular/router';
+import { provideRouter, RouterModule, withDebugTracing } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -10,11 +10,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(routes, withDebugTracing()),
     importProvidersFrom(RouterModule.forRoot(routes)),
     provideClientHydration(),
     provideHttpClient(withFetch()),
-    //@ts-ignore: Deprecated in Angular 20.2, will be removed in v23
     provideAnimationsAsync()
   ]
 };

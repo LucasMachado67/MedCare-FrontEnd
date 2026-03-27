@@ -17,21 +17,38 @@ import { Patients } from './pages/seeAll/patients/patients';
 import { Medics } from './pages/seeAll/medics/medics';
 import { Assistants } from './pages/seeAll/assistants/assistants';
 import { SidebarComponent } from './components/sidebar-component/sidebar-component';
+import { AuthLayout } from './layouts/auth-layout/auth-layout';
+import { MainLayout } from './layouts/main-layout/main-layout';
 
 export const routes: Routes = [
-    {path: '',redirectTo: ':company/home',pathMatch: 'full'},
-    {path: ':company/home', component: Home, canActivate: [AuthGuard, RoleGuard], data: {roles: ["USER"]}},
-    {path: ':company/medic/home', component: HomeMedic, canActivate: [AuthGuard, RoleGuard], data: {roles: ["MEDIC"]}},
-    {path: ':company/admin/home', component: HomeAdmin, canActivate: [AuthGuard, RoleGuard], data: {roles: ["ADMIN"]}},
-    {path: ':company/assistant/home', component: HomeAssistant, canActivate: [AuthGuard, RoleGuard], data: {roles: ["ASSISTANT"]}},
-    {path: 'login', component: LoginComponent},
-    {path: 'register', component: RegisterComponent},
-    {path: ':company/medic/register', component: MedicRegister},
-    {path: ':company/assistant/register', component: AssistantRegister},
-    {path: ':company/user/profile', component: ProfileComponent, canActivate: [AuthGuard, RoleGuard]},
-    {path: 'update-password', component: UpdatePassword},
-    {path: ':company/patients', component: Patients, canActivate: [AuthGuard, RoleGuard], data: {roles: ["ADMIN", "ASSISTANT"]}},
-    {path: ':company/medics', component: Medics, canActivate: [AuthGuard, RoleGuard], data: {roles: ["ADMIN", "ASSISTANT"]}},
-    {path: ':company/assistants', component: Assistants, canActivate: [AuthGuard, RoleGuard], data: {roles: ["ADMIN"]}},
-    {path: 'sidebar', component: SidebarComponent}
+    {
+        path: '',
+        component: AuthLayout,
+        children: [
+            {path: 'login', component: LoginComponent},
+            {path: 'register', component: RegisterComponent},
+            {path: 'update-password', component: UpdatePassword},
+        ]
+    },
+    {
+        path: ':company/home',
+        component: Home,
+        canActivate: [AuthGuard, RoleGuard]
+    },
+    {
+        path: ':company',
+        component: MainLayout,
+        children: [
+            {path: 'medic/home', component: HomeMedic, canActivate: [AuthGuard, RoleGuard], data: {roles: ["MEDIC"]}},
+            {path: 'admin/home', component: HomeAdmin, canActivate: [AuthGuard, RoleGuard], data: {roles: ["ADMIN"]}},
+            {path: 'assistant/home', component: HomeAssistant, canActivate: [AuthGuard, RoleGuard], data: {roles: ["ASSISTANT"]}},
+            {path: 'medic/register', component: MedicRegister},
+            {path: 'assistant/register', component: AssistantRegister},
+            {path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard, RoleGuard]},
+            {path: 'patients', component: Patients, canActivate: [AuthGuard, RoleGuard], data: {roles: ["ADMIN", "ASSISTANT"]}},
+            {path: 'medics', component: Medics, canActivate: [AuthGuard, RoleGuard], data: {roles: ["ADMIN", "ASSISTANT"]}},
+            {path: 'assistants', component: Assistants, canActivate: [AuthGuard, RoleGuard], data: {roles: ["ADMIN"]}},
+        ]
+    },
+    { path: '**', redirectTo: 'login' }
 ];

@@ -2,13 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Medic } from '../../../models/Medic';
 import { MedicService } from '../../../services/medic-service';
 import { Router } from '@angular/router';
-import { Header } from "../../../components/header/header";
-import { FilterPipe } from '../../../utils/filter-pipe';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-medics',
-  imports: [Header, FilterPipe, FormsModule],
+  imports: [],
   templateUrl: './medics.html',
   styleUrl: './medics.scss',
 })

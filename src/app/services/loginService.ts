@@ -3,7 +3,8 @@ import { environment } from '../../environments';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginResponse } from '../interfaces/LoginResponse';
-import { map, Observable, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, switchMap, tap } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,6 @@ export class LoginService {
         .pipe(tap((value) => {
             if(value.token) sessionStorage.setItem('auth-token', value.token);
             if(value.email) sessionStorage.setItem('email', value.email);
-            if(value.role) sessionStorage.setItem('role', value.role);
             if(value.personId) sessionStorage.setItem('personId', value.personId.toString());
             if(value.tenantId) sessionStorage.setItem('tenantId', value.tenantId.toString());
             if(value.mustChangePassword) sessionStorage.setItem('mustChangePassword', value.mustChangePassword.toString())
@@ -35,12 +35,7 @@ export class LoginService {
           )
         )
       );
-  }
-  /* 
-    Caso o usuário não possuir login,
-    ele deverá criar o próprio objeto Person e
-    depois dar continuidade com o registro de Usuário no sistema
-  */
+  }  
   getToken(): string | null {
     if (typeof sessionStorage !== 'undefined') {
       return sessionStorage.getItem('auth-token');
@@ -48,15 +43,21 @@ export class LoginService {
     return null;
   }
 
-  getUserData(): any {
-    if (typeof sessionStorage !== 'undefined') {
+  getUserData(): any{
+    const token = this.getToken();
+    if(!token) return null;
+
+    try{
+      const payload: any = jwtDecode(token);
       return {
-        email: sessionStorage.getItem("email"),
-        role: sessionStorage.getItem('role'),
-        personId: sessionStorage.getItem('personId'),
-      };
+        email: payload.sub,
+        role: payload.role,
+        personId: sessionStorage.getItem('personId')
+      }
+    }catch (error){
+      return null
     }
-    return null;
+    
   }
 
   updatePassword(newPassword: string) {

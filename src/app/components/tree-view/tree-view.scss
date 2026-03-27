@@ -8,13 +8,14 @@
   transition: background 0.2s;
   font-family: sans-serif;
   font-size: 14px;
+  transition: all ease 0.5s;
   &.is-open {
-    background-color: rgba(255, 255, 255, 0.1); // Fundo mais claro
-    color: #ffffff; // Texto fica branco brilhante
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #d440f5; // Texto fica branco brilhante
     border-bottom-color: transparent;
     
     .folder-icon {
-      filter: grayscale(0); // Se tiver ícone, ele ganha cor
+      filter: grayscale(0);
       color: variables.$secondary-color;
     }
   }

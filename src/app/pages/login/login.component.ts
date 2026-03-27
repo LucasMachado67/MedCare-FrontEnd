@@ -21,7 +21,7 @@ interface LoginForm {
 export class LoginComponent {
 
   loginForm!: FormGroup<LoginForm>;
-
+  
     constructor(
       private router: Router,
       private loginService: LoginService,
@@ -35,28 +35,24 @@ export class LoginComponent {
     submit(){
       this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
         next: (res) => {
-        console.log("Resposta no componente:", res);
-        const company = sessionStorage.getItem('companyName');
-        console.log(company);
+          const company = sessionStorage.getItem("companyName")
           if (res.mustChangePassword == true) {
             // Redireciona para a tela de troca de senha se o login for pela primeira vez
             this.router.navigate(["update-password"]);
           } else {
-            // Segue o fluxo normal
-            if(res.role == "MEDIC"){
-              this.router.navigate([`/${company}/medic/home`]);
-            }else if(res.role == "ADMIN"){
-              this.router.navigate([`/${company}/admin/home`]);
-            }else if(res.role == "USER"){
-              this.router.navigate([`/${company}/home`]);
-              
-            }else{
-              this.router.navigate([`/${company}/home`]);
-            }
+            const targetRoute = res.role === "ADMIN" ? "admin/home" : 
+                            res.role === "MEDIC" ? "medic/home" :
+                            res.role === "ASSISTANT" ? "assistant/home" : "home";
+                            
+            const finalUrl = `/${company}/${targetRoute}`;
+            this.router.navigate([finalUrl]).then(success => {
+              if (!success) {
+                console.error("Não foi possível efetuar login");
+              }
+            });
           }
         },
         error: (err) => {
-          
           console.error("Erro ao fazer login", err);
         }
       })

@@ -9,8 +9,7 @@ import { Appointment } from '../models/Appointment';
   providedIn: 'root',
 })
 export class AppointmentService {
-    
-
+  
   readonly url = environment.url;
 
   constructor(private httpClient: HttpClient, private router: Router){}
