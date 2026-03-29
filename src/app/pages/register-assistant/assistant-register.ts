@@ -65,7 +65,8 @@ export class AssistantRegister {
   }
 
   navigate(){
-    this.router.navigate(["login"]);
+    const company = sessionStorage.getItem('companyName');
+    this.router.navigate([`${company}/admin/home`]);
   }
 
   step = 1;

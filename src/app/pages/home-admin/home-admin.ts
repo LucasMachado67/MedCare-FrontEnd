@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TreeNode } from '../../interfaces/TreeNode';
+import { LoginService } from '../../services/loginService';
 
 @Component({
   selector: 'app-home-admin',
@@ -7,8 +8,18 @@ import { TreeNode } from '../../interfaces/TreeNode';
   templateUrl: './home-admin.html',
   styleUrl: './home-admin.scss',
 })
-export class HomeAdmin {
-
+export class HomeAdmin implements OnInit{
+    constructor(private loginService:LoginService){
+    }
+    ngOnInit(): void {
+      this.get();
+      console.log(this.token);
+    } 
+    
+    token:any;
+    get(){
+      this.token = this.loginService.getTenantIdFromToken();
+    }
     company: string | null = sessionStorage.getItem('companyName');
     nodes: TreeNode[] = [
       {

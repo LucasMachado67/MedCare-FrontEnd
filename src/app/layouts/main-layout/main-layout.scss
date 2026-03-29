@@ -1,0 +1,11 @@
+.layout {
+  display: flex;         /* Coloca o sidebar e o content lado a lado */
+  min-height: 100vh;     /* Garante que o layout ocupe a altura toda da tela */
+  align-items: flex-start;
+}
+
+.content {
+  flex-grow: 1;          /* Faz o conteúdo ocupar todo o resto da largura */
+  height: 100vh;         /* Opcional: para o conteúdo ter scroll próprio */
+  overflow-y: auto;      /* Caso o conteúdo seja maior que a tela */
+}

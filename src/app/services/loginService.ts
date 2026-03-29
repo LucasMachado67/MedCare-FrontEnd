@@ -57,7 +57,19 @@ export class LoginService {
     }catch (error){
       return null
     }
-    
+  }
+
+  getTenantIdFromToken(){
+    const token = this.getToken();
+    if(!token) return null;
+    try{
+      const payload: any = jwtDecode(token);
+      return {
+        tenantId: payload.tenantId
+      }
+    }catch (error){
+      return null;
+    }
   }
 
   updatePassword(newPassword: string) {
