@@ -1,0 +1,60 @@
+@use "../../../styles/variables.scss" as variables;
+
+.user-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.user-line:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.username {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Ocupa mais espaço que as outras colunas */
+}
+
+.username span:first-child {
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+}
+
+.username span:last-child {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.user-line > span {
+    flex: 1;
+    color: #555;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+button {
+    background-color: #f0f2f5;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #555;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover {
+    background-color: variables.$assistant-primary-color;
+    color: white;
+}

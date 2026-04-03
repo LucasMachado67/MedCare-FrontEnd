@@ -1,5 +1,13 @@
-<div>
-    @for (medic of medics; track $index) {
-        <p>{{medic.name}}</p>   
-    }
+
+<div class="content">
+
+    <div class="filters">
+        
+    </div>
+    <div class="list">
+    
+        @for (medic of medics; track $index) {
+            <app-user-list [user]="medic"></app-user-list> 
+        }
+    </div>
 </div>

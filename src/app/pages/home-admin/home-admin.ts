@@ -8,13 +8,9 @@ import { LoginService } from '../../services/loginService';
   templateUrl: './home-admin.html',
   styleUrl: './home-admin.scss',
 })
-export class HomeAdmin implements OnInit{
+export class HomeAdmin{
     constructor(private loginService:LoginService){
     }
-    ngOnInit(): void {
-      this.get();
-      console.log(this.token);
-    } 
     
     token:any;
     get(){

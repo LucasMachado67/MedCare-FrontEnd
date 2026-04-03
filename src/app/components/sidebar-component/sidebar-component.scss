@@ -80,6 +80,16 @@
             max-height: 350px;
             overflow-y: auto;
         }
+
+        .logout{
+            background-color: rgb(231, 72, 72);
+            border: 3px solid rgb(231, 72, 72);
+            border-radius: 10px;
+            transition: 0.3s all ease;
+            &:hover{
+                scale:1.1;
+            }
+        }
     }
 }
 

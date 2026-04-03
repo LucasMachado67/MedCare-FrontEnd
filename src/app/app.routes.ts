@@ -22,6 +22,11 @@ import { MainLayout } from './layouts/main-layout/main-layout';
 
 export const routes: Routes = [
     {
+        path:'',
+        redirectTo: 'login',
+        pathMatch:'full'
+    },
+    {
         path: '',
         component: AuthLayout,
         children: [

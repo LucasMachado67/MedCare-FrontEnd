@@ -3,10 +3,11 @@ import { Medic } from '../../../models/Medic';
 import { MedicService } from '../../../services/medic-service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { UserList } from "../../../components/user-list/user-list";
 
 @Component({
   selector: 'app-medics',
-  imports: [CommonModule],
+  imports: [CommonModule, UserList],
   templateUrl: './medics.html',
   styleUrl: './medics.scss',
 })

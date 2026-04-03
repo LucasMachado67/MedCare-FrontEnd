@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TreeNode } from '../../interfaces/TreeNode';
 import { TreeView } from "../tree-view/tree-view";
 import { trigger, transition, style, animate } from '@angular/animations';
+import { LoginService } from '../../services/loginService';
 @Component({
   selector: 'app-sidebar-component',
   imports: [TreeView],
@@ -36,6 +37,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class SidebarComponent {
   
+  constructor(private loginService:LoginService){}
+  
   @Input() nodes: TreeNode[] = [];
 
   isOpen = false;
@@ -46,6 +49,10 @@ export class SidebarComponent {
     }else{
       this.isOpen = false;
     }
+  }
+
+  logout() {
+    this.loginService.logout();
   }
 
   company: string | null = sessionStorage.getItem('companyName');
