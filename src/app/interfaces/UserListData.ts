@@ -1,5 +1,6 @@
 export interface UserListData{
     
+    id: number;
     name: string;
     email: string;
     phone: string;
@@ -9,5 +10,7 @@ export interface UserListData{
     //Campos de Assistant
     status?: string;
     registrationNumber?: string;
-
+    //User comum (Patient)
+    city?: string;
+    state?: string;
 }

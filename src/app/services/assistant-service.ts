@@ -26,4 +26,11 @@ export class AssistantService {
       { headers: { 'Authorization': `Bearer ${this.token}` }}
     )
   }
+
+  getAllAssistants():Observable<Assistant[]>{
+      return this.http.get<Assistant[]>(
+        this.url + `/${this.company}/assistant/all`,
+        {headers: {'Authorization': `Bearer ${this.token}`}}
+      )
+    }
 }

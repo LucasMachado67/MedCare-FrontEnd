@@ -1,3 +1,12 @@
-<app-header></app-header>
 
+<div class="content">
 
+    <div class="filters">
+        <app-filter-list></app-filter-list>
+    </div>
+    <div class="list">
+        @for (assistant of assistants; track $index) {
+            <app-user-list [user]="assistant"></app-user-list> 
+        }
+    </div>
+</div>

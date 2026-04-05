@@ -1,0 +1,41 @@
+<search class="search-container">
+  <form (submit)="getCurrentSearch(); $event.preventDefault()">
+    <div class="search-wrapper">
+      <div class="input-group">
+        <label for="filter">Pesquisar por</label>
+        <select id="filter" name="filter" [(ngModel)]="filterType">
+          <option value="name">Nome</option>
+          <option value="email">Email</option>
+          <option value="crm">CRM</option>
+          <option value="medicalSpeciality">Especialidade</option>
+        </select>
+      </div>
+      
+      <div class="field-group">
+        <input 
+          type="search" 
+          name="q" 
+          [(ngModel)]="search" 
+          placeholder="Pesquisar...">
+          
+        <button type="submit" aria-label="Buscar" class="search-action">
+          <i class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</search>
+
+<div class="order">
+    <h2>Order</h2>
+    <div class="options">
+        <input type="radio" id="Crescente" name="grupo" value="A-Z">
+        <label for="Crescente">Crescente</label>
+    </div>
+    <div class="options">
+        <input type="radio" id="Decresente" name="grupo" value="Z-A">    
+        <label for="Decresente">Decresente</label>
+    </div>
+
+</div>
+

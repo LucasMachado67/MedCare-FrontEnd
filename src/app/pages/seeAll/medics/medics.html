@@ -2,10 +2,9 @@
 <div class="content">
 
     <div class="filters">
-        
+        <app-filter-list (filter)="getFilters($event)"></app-filter-list>
     </div>
     <div class="list">
-    
         @for (medic of medics; track $index) {
             <app-user-list [user]="medic"></app-user-list> 
         }

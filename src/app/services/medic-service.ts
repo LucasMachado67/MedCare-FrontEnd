@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Medic } from '../models/Medic';
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { LoginService } from './loginService';
 
 @Injectable({
@@ -28,10 +28,21 @@ export class MedicService {
     )
   }
 
-  getAllMedics():Observable<Medic[]>{
+  getAllMedics(search?: string,filterType: string = 'name', orderBy: string = 'name', direction: string = 'ASC'):Observable<Medic[]>{
+
+    let params = new HttpParams()
+      .set('orderBy', orderBy)
+      .set('direction', direction);
+    if (search) {
+      params = params.set('search', search);
+      params = params.set('filterBy', filterType);
+    }
     return this.http.get<Medic[]>(
       this.url + `/${this.company}/medic/all`,
-      {headers: {'Authorization': `Bearer ${this.token}`}}
+      {
+        headers: {'Authorization': `Bearer ${this.token}`},
+        params: params
+      }
     )
   }
   

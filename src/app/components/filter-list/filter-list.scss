@@ -1,0 +1,81 @@
+
+@use "../../../styles/variables.scss" as variables;
+.search-wrapper {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: sans-serif;
+    max-width: 400px;
+    
+    .input-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+    }
+    label{
+        margin-left: 10px;
+    }
+
+    select {
+        padding: 4px 8px;
+        border: 2px solid #000;
+        font-size: 16px;
+        cursor: pointer;
+        width: 50%;
+    }
+
+    .field-group {
+        display: flex;
+        align-items: stretch; 
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    input[type="search"] {
+        flex: 1; 
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-right: none;
+        font-size: 16px;
+    }
+
+    .search-action {
+        background: variables.$assistant-primary-color;;
+        color: white;
+        border: 3px solid variables.$assistant-primary-color;;
+        padding: 0 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: 0.3s all ease;
+        &:hover {
+            background: rgb(221, 221, 221);
+            color: variables.$assistant-primary-color;
+        }
+    }
+    .search-icon {
+        font-style: normal;
+        font-size: 20px;
+    }
+}
+
+.order{
+    margin-top: 30px;
+    border-top: 1px solid gray;
+    
+    .options{
+        margin-left: 10px;
+        transition: 0.3s all ease;
+
+        label{
+            margin-left: 10px;
+            font-size: large;
+        }
+
+        &:hover{
+            background-color: rgb(238, 238, 238);
+        }
+    }
+}
